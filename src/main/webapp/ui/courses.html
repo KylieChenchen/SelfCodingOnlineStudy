@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="free-educational-responsive-web-template-webEdu">
+    <meta name="author" content="webThemez.com">
+    <title>SelfCoding_视频列表</title>
+    <link rel="favicon" href="media/images/favicon.png">
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="media/css/font-awesome.min.css">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="media/css/bootstrap-theme.css" media="screen">
+    <link rel="stylesheet" href="media/css/style.css">
+        <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+    <script src="media/js/jquery.min.js"></script>
+    <script src="media/js/jquery-1.12.2.min.js"></script>
+    <script src="media/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .yytype{
+            list-style-type: none;
+        }
+        .yytype li{
+            float: left;
+            margin-left: 10px;
+            margin-top: 20px;
+           margin-right: 40px;
+        }
+        .btn-group button{
+        	border: none;
+            background-color: #3D84E6;
+        }
+    </style>
+</head>
+-
+<body>
+<!-- Fixed navbar -->
+<script type="application/javascript" src="media/js/head.js"></script>
+<!-- /.navbar -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb" style="font-size: 20px">
+                <li><a href="index.html">主页</a></li>
+                <li><a href="courses.html">全部课程</a></li>
+                <li class="active" id="coursetype" value="0"></li>
+            </ol>
+            <hr/>
+        </div>
+        <!--<div class="col-md-1">-->
+            <!--<label>语言：</label>-->
+        <!--</div>-->
+        <!--<div class="col-md-11">-->
+                <!--<ul class="yytype" style="list-style-type: none">-->
+                    <!--<li>全部</li>-->
+                    <!--<li>全部</li>-->
+                    <!--<li>全部</li>-->
+                    <!--<li>全部</li>-->
+                <!--</ul>-->
+        <!--</div>-->
+        <div class="col-md-12">
+            <hr/>
+        </div>
+        <div class="col-md-1">
+            <br>
+            <label style="font-size: medium">知识点：</label>
+        </div>
+        <div class="col-md-11">
+
+            <ul class="yytype" style="list-style-type: none" id="ctype">
+                <li>全部</li>
+                <li>全部</li>
+                <li>全部</li>
+                <li>全部</li>
+            </ul>
+
+        </div>
+        <div class="col-md-12">
+            <hr/>
+        </div>
+        <div class="col-md-12">
+                <button type="button" class="btn btn-default">综合排序</button>
+                <button type="button" class="btn btn-default">好评率</button>
+                <button type="button" class="btn btn-default">人气</button>
+                <button type="button" class="btn btn-default">学贝</button>
+                |
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ￥0
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="ul">
+                        <li id="li1"><a href="javascript:listbycondition(0,99999)">￥不限</a></li>
+                        <li id="li2"><a href="javascript:listbycondition(1,99)">￥1-99</a></li>
+                        <li id="li3"><a href="javascript:listbycondition(199,999)">￥199-999</a></li>
+                        <li id="li4"><a href="javascript:listbycondition(1000,99999)">￥1000以上</a></li>
+                    </ul>
+
+                    <!--<option class="dropdown-menu">-->
+                        <!--<option><a href="javascript:listbycondition(0,99999)">￥不限</a></option>-->
+                        <!--<option><a href="javascript:listbycondition(1,99)">￥1-99</a></option>-->
+                        <!--<option><a href="javascript:listbycondition(199,999)">￥199-999</a></option>-->
+                        <!--<option><a href="javascript:listbycondition(1000,99999)">￥1000以上</a></option>-->
+                    <!--</option>-->
+                </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <ul class="list-unstyled video-list-thumbs row" id="course">
+        <li class="col-lg-3 col-sm-4 col-xs-6">
+            <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
+                <img src="media/images/mqdefault.jpg" alt="Barca" class="img-responsive" height="130px"/>
+                <h2>Claudio Bravo, antes su debut con el Barça en la Liga</h2>
+                <span class="play-button"></span>
+                <span class="duration">03:15</span>
+            </a>
+        </li>
+        <!--<li class="col-lg-3 col-sm-4 col-xs-6">-->
+            <!--<a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">-->
+                <!--<img src="media/images/mqdefault.jpg" alt="Barca" class="img-responsive" height="130px"/>-->
+                <!--<h2>Claudio Bravo, antes su debut con el Barça en la Liga</h2>-->
+                <!--<span class="play-button"></span>-->
+                <!--<span class="duration">03:15</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="col-lg-3 col-sm-4 col-xs-6">-->
+            <!--<a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">-->
+                <!--<img src="media/images/mqdefault.jpg" alt="Barca" class="img-responsive" height="130px"/>-->
+                <!--<h2>Claudio Bravo, antes su debut con el Barça en la Liga</h2>-->
+                <!--<span class="play-button"></span>-->
+                <!--<span class="duration">03:15</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="col-lg-3 col-md-4 col-sm-4 col-xs-6">-->
+            <!--<a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">-->
+                <!--<img src="media/images/mqdefault.jpg" alt="Barca" class="img-responsive" height="130px"/>-->
+                <!--<h2>Claudio Bravo, antes su debut con el Barça en la Liga</h2>-->
+                <!--<span class="play-button"></span>-->
+                <!--<span class="duration">03:15</span>-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
+</div>
+<div id="courses">
+    <section class="container" style="font-family:Monaco">
+        <h3>课程扩展</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="featured-box">
+                    <div class="text">
+                        <h3>Responsive Design</h3>
+                        响应式网站设计的理念是：
+                        页面的设计与开发应当根据用户行为以及设备环境(系统平台、屏幕尺寸、屏幕定向等)进行相应的响应和调整。
+                        具体的实践方式由多方面组成，包括弹性网格和布局、图片、CSS media query的使用等。
+                        无论用户正在使用笔记本还是iPad，我们的页面都应该能够自动切换分辨率、图片尺寸及相关脚本功能等，以适应不同设备。
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="featured-box">
+                    <div class="text">
+                        <h3>HTML5/CSS3</h3>
+                        html是用来定义文档内容结构的，包含了用户需要浏览的内容，包括图文、视频，即构成网页的基本元素；
+                        css是Cascading Style Sheets 的缩写,即层叠式样式表单，它是由W3C协会制定并发布的一个网页排版式标准,是对HTML语言功能的补充。
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="featured-box">
+                    <div class="text">
+                        <h3>Web Designing</h3>
+                        网页设计，是根据企业希望向浏览者传递的信息（包括产品、服务、理念、文化），进行网站功能策划，然后进行的页面设计美化工作。
+                        作为企业对外宣传物料的其中一种，精美的网页设计，对于提升企业的互联网品牌形象至关重要。
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="featured-box">
+                    <div class="text">
+                        <h3>Web App Dev</h3>
+                        随着web 2.0时代的到来，网站的个性化则意味着精而专，网站之间的分工更明确，
+                        而且网站的个性化不是原来的网页个性化，而是服务个性化
+                        。这就要求互联网软件开发工程师拥有精专的技术，为网站提供更好的个性化应用服务。
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="featured-box">
+                    <div class="text">
+                        <h3>Data Base</h3>
+                        随着云时代的来临，大数据也吸引了越来越多的关注。大数据
+                        通常用来形容一个公司创造的大量非结构化数据和半结构化数据，这些数据在下载到关系型数据库用于分析时会花费过多时间和金钱
+                        。大数据分析常和云计算联系到一起，
+                        因为实时的大型数据集分析需要像MapReduce一样的框架来向数十、数百或甚至数千的电脑分配工作。
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="featured-box">
+                    <div class="text">
+                        <h3>Mobile App Dev</h3>
+                        移动应用开发是为小型、无线计算设备编写软件的流程和程序的集合，像智能手机或者平板电脑。
+                        移动应用开发类似于Web应用开发，起源于更为传统的软件开发。
+                        但关键的不同在于移动应用通常利用一个具体移动设备提供的独特性能编写软件。例如，利用iPhone的加速器编写游戏应用。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+<script type="text/javascript">
+    $(function(){
+
+        $.ajax({
+            type:"get",
+            url:"/selfcoding/ctype/listAll.do",
+            dataType:"json",
+            success:function(data){
+                if(data.code == 1){
+
+                    $("#ctype").empty();
+                    var infos = data.data;
+                    $(infos).each(function(){
+                        var html = ' <li style="font-size: medium"><a href="javascript:listbytype('+this.id+')">'+this.name+'</a></li>';
+                        $("#ctype").append($(html));
+                    })
+                }
+            }
+
+        })
+
+        $.ajax({
+            type:"get",
+            url:"/selfcoding/course/listAll.do",
+
+            dataType:"json",
+            success:function(data){
+                if(data.code == 1){
+
+                    $("#course").empty();
+                    var infos = data.data;
+                    $(infos).each(function() {
+                        var isFree  = this.coins;
+                        if (isFree == 0){
+                            isFree = "免费";
+                        } else {
+                            isFree = "￥"+this.coins;
+                        }
+
+                        var t;
+                        var s = this.seconds;
+                        if(s > -1){
+                            var hour = Math.floor(s/3600);
+                            var min = Math.floor(s/60) % 60;
+                            var sec = s % 60;
+                            if(hour < 10) {
+                                t = '0'+ hour + ":";
+                            } else {
+                                t = hour + ":";
+                            }
+
+                            if(min < 10){t += "0";}
+                            t += min + ":";
+                            if(sec < 10){t += "0";}
+                            t += sec;
+                        }
+                        // var min=Math.floor(this.seconds%3600);
+                        // var hour = Math.floor(this.seconds/3600) + ":" + Math.floor(min/60) + ":"+ this.seconds%60 ;
+
+
+                        var html = '<li class="col-lg-3 col-sm-4 col-xs-6">\n' +
+                            '            <a href="play.html?preurl='+this.preurl+'" title="'+this.name+'" target="_blank">\n' +
+                            '                <img src="'+this.info+'" alt="Barca" class="img-responsive" height="130px"/>\n' +
+                            '                <h2 style="font-size: medium;font-family:Dialog;">'+this.name+'</h2>' +
+                            '<h5 style="color: black">&nbsp;&nbsp;&nbsp;讲师：'+this.aname+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+
+                            ''+isFree+'</h5>' +
+
+                            // '<div style="float:left">讲师：'+this.aname+'</div>'+
+                            //
+                            // '<div style="float:left">￥&nbsp;&nbsp;'+this.coins+'</div>'+
+
+                            '<a href="../cart/add.do?cid='+this.id+'" style="color:#d58512;text-align: center;font: bold">购买该课程</a>\n' +
+
+                            '                <span class="play-button"></span>\n' +
+                            '               <span class="duration" id="time">'+t+'</span>\n' +
+                            '            </a>\n' +
+                            '        </li>';
+
+                        $("#course").append($(html));
+
+                    })
+                }
+            }
+
+        })
+    })
+
+
+
+
+
+</script>
+
+<!--<script type="text/javascript">-->
+
+
+    <!--function sToMin(s){-->
+
+        <!--var min=Math.floor(s%3600);-->
+        <!--var hour = Math.floor(s/3600) + ":" + Math.floor(min/60) + ":"+ s%60 ;-->
+
+        <!--return hour;-->
+    <!--}-->
+
+    <!--$("#time").html(sToMin());-->
+<!--</script>-->
+
+<script type="text/javascript">
+    function listbytype(tid){
+
+        $.ajax({
+            type:"get",
+            url:"/selfcoding/course/listbytype.do?tid=" + tid,
+            data:{min:0,max:99999},
+            dataType:"json",
+            success:function(data){
+                if(data.code == 1){
+
+                    $("#course").empty();
+                    $("#coursetype").empty();
+                    var infos = data.data;
+                    $(infos).each(function() {
+                        var isFree  = this.coins;
+                        if (isFree == 0){
+                            isFree = "免费";
+                        } else {
+                            isFree = "￥"+this.coins;
+                        }
+
+                        var t;
+                        var s = this.seconds;
+                        if(s > -1){
+                            var hour = Math.floor(s/3600);
+                            var min = Math.floor(s/60) % 60;
+                            var sec = s % 60;
+                            if(hour < 10) {
+                                t = '0'+ hour + ":";
+                            } else {
+                                t = hour + ":";
+                            }
+
+                            if(min < 10){t += "0";}
+                            t += min + ":";
+                            if(sec < 10){t += "0";}
+                            t += sec;
+                        }
+
+                        var html = '<li class="col-lg-3 col-sm-4 col-xs-6">\n' +
+                            '            <a href="play.html?preurl='+this.preurl+'" title="'+this.name+'" target="_blank">\n' +
+                            '                <img src="'+this.info+'" alt="Barca" class="img-responsive" height="130px"/>\n' +
+                            '                <h2 style="font-size: medium;font-family:Dialog;">'+this.name+'</h2>' +
+                            '<h5 style="color: black">&nbsp;&nbsp;&nbsp;讲师：'+this.aname+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+
+                            ''+isFree+'</h5>' +
+
+                            // '<div style="float:left">讲师：'+this.aname+'</div>'+
+                            //
+                            // '<div style="float:left">￥&nbsp;&nbsp;'+this.coins+'</div>'+
+
+                            '<a href="../cart/add.do?cid='+this.id+'" style="color:#d58512;text-align: center;font: bold">购买该课程</a>\n' +
+
+                            '                <span class="play-button"></span>\n' +
+                            '               <span class="duration" id="time">'+t+'</span>\n' +
+                            '            </a>\n' +
+                            '        </li>';
+
+                        $("#course").append($(html));
+                        $("#coursetype").attr("value",tid);
+                        $("#coursetype").html(this.tname);
+
+                    })
+                }
+            }
+
+        })
+    }
+
+    function  listbycondition(min,max){
+        // var params = window.location.search
+        // //拆分获取id
+        // var index = params.indexOf("=");
+        //  var id = params.substring(index + 1);
+
+
+        var id = $("#coursetype").attr("value");
+
+
+
+        $.ajax({
+            type:"get",
+            url:"/selfcoding/course/listbytype.do?min=" + min + "&max=" + max+"&tid="+id,
+            // data:tid = id,
+            dataType:"json",
+            success:function(data){
+                if(data.code == 1){
+                    $("#course").empty();
+                    // $("#coursetype").empty();
+                    var infos = data.data;
+                    $(infos).each(function() {
+                        var isFree  = this.coins;
+                        if (isFree == 0){
+                            isFree = "免费";
+                        } else {
+                            isFree = "￥"+this.coins;
+                        }
+
+                        var t;
+                        var s = this.seconds;
+                        if(s > -1){
+                            var hour = Math.floor(s/3600);
+                            var min = Math.floor(s/60) % 60;
+                            var sec = s % 60;
+                            if(hour < 10) {
+                                t = '0'+ hour + ":";
+                            } else {
+                                t = hour + ":";
+                            }
+
+                            if(min < 10){t += "0";}
+                            t += min + ":";
+                            if(sec < 10){t += "0";}
+                            t += sec;
+                        }
+
+                        var html = '<li class="col-lg-3 col-sm-4 col-xs-6">\n' +
+                            '            <a href="play.html?preurl='+this.preurl+'" title="'+this.name+'" target="_blank">\n' +
+                            '                <img src="'+this.info+'" alt="Barca" class="img-responsive" height="130px"/>\n' +
+                            '                <h2 style="font-size: medium;font-family:Dialog;">'+this.name+'</h2>' +
+                            '<h5 style="color: black">&nbsp;&nbsp;&nbsp;讲师：'+this.aname+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+
+                            ''+isFree+'</h5>' +
+
+                            // '<div style="float:left">讲师：'+this.aname+'</div>'+
+                            //
+                            // '<div style="float:left">￥&nbsp;&nbsp;'+this.coins+'</div>'+
+
+                            '<a href="../cart/add.do?cid='+this.id+'" style="color:#d58512;text-align: center;font: bold">购买该课程</a>\n' +
+
+                            '                <span class="play-button"></span>\n' +
+                            '               <span class="duration" id="time">'+t+'</span>\n' +
+                            '            </a>\n' +
+                            '        </li>';
+
+                        $("#course").append($(html));
+                        // $("#coursetype").html(this.tname);
+                        if (min == 1){
+                            $("#li2").siblings('li').removeClass('selected');
+                            $("#li2").addClass('selected');
+                        }else if (min == 199){
+                            $("#li3").siblings('li').removeClass('selected');
+                            $("#li3").addClass('selected');
+                        } else if(min == 0){
+                            $("#li1").siblings('li').removeClass('selected');
+                            $("#li1").addClass('selected');
+                        } else {
+                            $("#li4").siblings('li').removeClass('selected');
+                            $("#li4").addClass('selected');
+                        }
+                    })
+                }
+            }
+
+        })
+    }
+</script>
+
+<script type="application/javascript" src="media/js/footer.js"></script>
+
+</body>
+</html>

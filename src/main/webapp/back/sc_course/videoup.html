@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>滴答办公系统-课程新增</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <script type="text/javascript" src="../js/jquery-1.12.2.min.js"></script>
+</head>
+<body>
+<form class="layui-form" action="#" method="post" onsubmit="return false;">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">课程名称</label>
+        <div class="layui-input-block">
+            <select name="cid" id="select">
+
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">视频</label>
+        <video style="display:none;" controls="controls" id="aa" oncanplaythrough="myFunction(this)">
+
+        </video>
+        <button type="button" class="layui-btn" id="upfile"  onchange="changeFile(this)">
+            <i class="layui-icon">&#xe67c;</i>上传视频
+        </button>
+        <input type="hidden" id="videourl" name="videourl">
+        <span id="getDuration">msg</span>
+        <!--<input type="hidden" name="photo" id="p1">-->
+        <!--<div class="layui-input-block">-->
+            <!--<img alt="课程照片"  id="img1" width="240px" height="135px">-->
+        <!--</div>-->
+
+    </div>
+    <div class="layui-form-item">
+        <input class="layui-btn"  style="margin-left: 10%"  type="submit" value="确认新增视频">
+    </div>
+</form>
+    <script src="../layui/layui.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script>
+        var form;
+        layui
+            .use(
+                [ 'form','upload', 'layedit', 'laydate' ],
+                function() {
+                    form = layui.form, layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+                    var upload = layui.upload;
+
+                    //执行实例
+                    var uploadInst = upload.render({
+                        elem: '#upfile' //绑定元素
+                        ,url: '/selfcoding/course/videoupload.do'//上传接口
+                        ,accept: 'video' //视频
+                        ,done: function(obj){
+                            //上传完毕回调
+                            console.log(obj);
+                            if(obj.code==1){
+                                $("#videourl").val(obj.msg);
+
+                                $("#btn1").attr("disabled",false);
+                                alert("上传视频成功");
+                            }
+
+                        }
+                        ,error: function(){
+                            //请求异常回调
+                        }
+                    });
+                    //日期
+                    laydate.render({
+                        elem : '#date'
+                    });
+
+
+                })
+    </script>
+
+
+    <script type="text/javascript">
+        $(function() {
+                $.ajax({
+                    type: "post",
+                    url: "/selfcoding/course/listAll.do",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.code == 1) {
+                            var infos = data.data;
+                            $("#select").empty();
+                            $(infos).each(function () {
+                                var html = ' <option value=' + this.id + '>' + this.name + '</option>';
+                                $("#select").append($(html));
+                            })
+
+                        }
+                    }
+                })
+            })
+    </script>
+    <script type="text/javascript">
+        function myFunction(ele) {
+            var hour = parseInt((ele.duration)/3600);
+            var minute = parseInt((ele.duration%3600)/60);
+            var second = Math.ceil(ele.duration%60);
+            //console.log(Math.floor(ele.duration));
+            //document.write("这段视频的时长为："+hour+"小时，"+minute+"分，"+second+"秒");
+            document.getElementById("getDuration").innerHTML="这段视频的时长为："+hour+"小时，"+minute+"分，"+second+"秒";
+        }
+
+        function changeFile(ele){
+            var video = ele.files[0];
+            var url = URL.createObjectURL(video);
+            console.log(url);
+            document.getElementById("aa").src = url;
+        }
+    </script>
+<script type="text/javascript">
+    $("form").submit(function(){
+        $.ajax({
+            type:"get",
+            url:"../../video/add.do",
+            data:$("form").serialize(),
+            success:function(data){
+                if(data.code==1){
+                    alert("添加成功");
+                    window.location.href='courselist.html';
+                }
+            }
+        })
+    })
+
+</script>
+
+</body>
+</html>

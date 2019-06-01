@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="free-educational-responsive-web-template-webEdu">
+	<meta name="author" content="webThemez.com">
+	<title>SelfCoding_我的钱包</title>
+	<link rel="favicon" href="media/images/favicon.png">
+	<link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="media/css/bootstrap.min.css">
+	<link rel="stylesheet" href="media/css/font-awesome.min.css">
+	<!-- Custom styles-->
+	<link rel="stylesheet" href="media/css/bootstrap-theme.css" media="screen">
+	<link rel="stylesheet" href="media/css/style.css">
+	<script type="application/javascript" src="media/js/jquery.min.js"></script>
+	<script type="application/javascript" src="media/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<!--1、头部-->
+	<script type="application/javascript" src="media/js/head.js"></script>
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary">
+            <div class="container">
+                    <h1>我的钱包</h1>
+                    <p>快来看看钱包的金额</p>
+            </div>
+   </header>
+	<!-- container -->
+	<section class="container">
+
+               
+		<div class="row">
+			<!-- Article main content -->
+			<article class="col-md-3 maincontent">
+				 <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
+                    <li>
+                        <a href="#" onclick="menuClick('about.html')" class="nav-header collapsed" data-toggle="collapse">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+							<span>我的钱包</span>
+                        </a>                      
+                    </li>
+                    <li>
+                        <a href="#" onclick="menuClick('connect.html')" class="nav-header collapsed" data-toggle="collapse">
+                            <i class="fa fa-linode" aria-hidden="true"></i>
+							<span>我的课程</span>
+                        </a>
+                    </li>
+ 					<li>
+                        <a href="#" onclick="menuClick('login.html')" class="nav-header collapsed" data-toggle="collapse">
+                            <i class="fa fa-usd" aria-hidden="true"></i>
+							<span>我的收入</span>
+                        </a>
+                    </li>
+ 					<li>
+                        <a href="#" onclick="menuClick('price.html')" class="nav-header collapsed" data-toggle="collapse">
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+							<span>学习痕迹</span>
+                        </a>
+                    </li>
+                </ul>
+			</article>
+			<!-- /Article -->
+
+			<!-- Sidebar -->
+			<aside class="col-md-9 sidebar sidebar-right">
+				<iframe id="pagecontent" src="about.html" width="100%" height="100%"  frameborder="no" border="0" marginwidth="0" marginheight=" 0" scrolling="no" allowtransparency="yes"></iframe>
+			</aside>
+			<!-- /Sidebar -->
+		</div>
+	</section>
+	
+	<!-- /container -->
+ 	<script type="application/javascript" src="media/js/footer.js"></script>
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	
+	<script type="text/javascript">
+		function initload() {
+			var height=document.documentElement.clientHeight;
+			console.log(height);
+			document.getElementById('pagecontent').style.height=height+'px';
+		};
+		function menuClick(menuUrl) {
+			$("#pagecontent").attr('src',menuUrl);
+		};
+	</script>
+</body>
+</html>

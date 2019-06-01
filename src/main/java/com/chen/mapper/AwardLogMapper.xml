@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.user.AwardLogMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.user.AwardLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uwid" jdbcType="INTEGER" property="uwid" />
+    <result column="coins" jdbcType="INTEGER" property="coins" />
+    <result column="startdate" jdbcType="DATE" property="startdate" />
+    <result column="enddate" jdbcType="DATE" property="enddate" />
+    <result column="validity" jdbcType="SMALLINT" property="validity" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uwid, coins, startdate, enddate, validity, type, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from awardlog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from awardlog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.user.AwardLog">
+    insert into awardlog (id, uwid, coins, 
+      startdate, enddate, validity, 
+      type, createtime)
+    values (#{id,jdbcType=BIGINT}, #{uwid,jdbcType=INTEGER}, #{coins,jdbcType=INTEGER}, 
+      #{startdate,jdbcType=DATE}, #{enddate,jdbcType=DATE}, #{validity,jdbcType=SMALLINT}, 
+      #{type,jdbcType=SMALLINT}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.user.AwardLog">
+    insert into awardlog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uwid != null">
+        uwid,
+      </if>
+      <if test="coins != null">
+        coins,
+      </if>
+      <if test="startdate != null">
+        startdate,
+      </if>
+      <if test="enddate != null">
+        enddate,
+      </if>
+      <if test="validity != null">
+        validity,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uwid != null">
+        #{uwid,jdbcType=INTEGER},
+      </if>
+      <if test="coins != null">
+        #{coins,jdbcType=INTEGER},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=DATE},
+      </if>
+      <if test="validity != null">
+        #{validity,jdbcType=SMALLINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.user.AwardLog">
+    update awardlog
+    <set>
+      <if test="uwid != null">
+        uwid = #{uwid,jdbcType=INTEGER},
+      </if>
+      <if test="coins != null">
+        coins = #{coins,jdbcType=INTEGER},
+      </if>
+      <if test="startdate != null">
+        startdate = #{startdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        enddate = #{enddate,jdbcType=DATE},
+      </if>
+      <if test="validity != null">
+        validity = #{validity,jdbcType=SMALLINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.user.AwardLog">
+    update awardlog
+    set uwid = #{uwid,jdbcType=INTEGER},
+      coins = #{coins,jdbcType=INTEGER},
+      startdate = #{startdate,jdbcType=DATE},
+      enddate = #{enddate,jdbcType=DATE},
+      validity = #{validity,jdbcType=SMALLINT},
+      type = #{type,jdbcType=SMALLINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

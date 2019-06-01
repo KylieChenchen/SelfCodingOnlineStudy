@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.cart.CartMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.cart.Cart">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="courseid" jdbcType="INTEGER" property="courseid" />
+    <result column="coursenum" jdbcType="INTEGER" property="coursenum" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, courseid, coursenum, userid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cart
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cart
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.cart.Cart">
+    insert into cart (id, courseid, coursenum, 
+      userid)
+    values (#{id,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{coursenum,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.cart.Cart">
+    insert into cart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="courseid != null">
+        courseid,
+      </if>
+      <if test="coursenum != null">
+        coursenum,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="coursenum != null">
+        #{coursenum,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.cart.Cart">
+    update cart
+    <set>
+      <if test="courseid != null">
+        courseid = #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="coursenum != null">
+        coursenum = #{coursenum,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.cart.Cart">
+    update cart
+    set courseid = #{courseid,jdbcType=INTEGER},
+      coursenum = #{coursenum,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultType="com.chen.vo.CartVO">
+      SELECT ca.id,ca.courseid,ca.coursenum,c.name coursename,c.info imgpath,c.coins,ca.userid from cart ca
+      LEFT JOIN course c
+      on ca.courseid = c.id
+      LEFT JOIN userdetail u
+      on ca.userid = u.id
+  </select>
+
+
+  <insert id="addCart" parameterType="map">
+        insert INTO cart VALUES (null,#{courseid},1,#{userid})
+  </insert>
+
+
+  <insert id="delCart" parameterType="map">
+        delete from  cart where userid=#{userid} and courseid=#{courseid}
+  </insert>
+
+</mapper>

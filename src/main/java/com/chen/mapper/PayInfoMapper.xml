@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.pay.PayInfoMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.pay.PayInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ercodeurl" jdbcType="VARCHAR" property="ercodeurl" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="uvid" jdbcType="INTEGER" property="uvid" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="flag" jdbcType="SMALLINT" property="flag" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ercodeurl, type, uvid, money, ip, flag, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.pay.PayInfo">
+    insert into payinfo (id, ercodeurl, type, 
+      uvid, money, ip, flag, 
+      createtime)
+    values (#{id,jdbcType=INTEGER}, #{ercodeurl,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{uvid,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{flag,jdbcType=SMALLINT}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.pay.PayInfo">
+    insert into payinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ercodeurl != null">
+        ercodeurl,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="uvid != null">
+        uvid,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ercodeurl != null">
+        #{ercodeurl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="uvid != null">
+        #{uvid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.pay.PayInfo">
+    update payinfo
+    <set>
+      <if test="ercodeurl != null">
+        ercodeurl = #{ercodeurl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="uvid != null">
+        uvid = #{uvid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.pay.PayInfo">
+    update payinfo
+    set ercodeurl = #{ercodeurl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      uvid = #{uvid,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=SMALLINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.Menu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="aicon" jdbcType="VARCHAR" property="aicon" />
+    <result column="aurl" jdbcType="VARCHAR" property="aurl" />
+    <result column="parentId" jdbcType="INTEGER" property="parentid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, aicon, aurl, parentId, title, type, desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.Menu">
+    insert into menu (id, aicon, aurl, 
+      parentId, title, type, 
+      desc)
+    values (#{id,jdbcType=INTEGER}, #{aicon,jdbcType=VARCHAR}, #{aurl,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{desc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.Menu">
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="aicon != null">
+        aicon,
+      </if>
+      <if test="aurl != null">
+        aurl,
+      </if>
+      <if test="parentid != null">
+        parentId,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="aicon != null">
+        #{aicon,jdbcType=VARCHAR},
+      </if>
+      <if test="aurl != null">
+        #{aurl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.Menu">
+    update menu
+    <set>
+      <if test="aicon != null">
+        aicon = #{aicon,jdbcType=VARCHAR},
+      </if>
+      <if test="aurl != null">
+        aurl = #{aurl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.Menu">
+    update menu
+    set aicon = #{aicon,jdbcType=VARCHAR},
+      aurl = #{aurl,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      desc = #{desc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 额外增加 -->
+  <resultMap type="com.chen.vo.VMenuInfo" id="menuMap">
+    <id property="id" column="pid"/>
+    <result property="title" column="ptitle"/>
+    <result property="url" column="purl"/>
+    <result property="icon" column="icon"/>
+    <collection property="cMenu" javaType="java.util.ArrayList" ofType="com.chen.vo.VMenuInfo">
+      <id property="id" column="cid"/>
+      <result property="title" column="ctitle"/>
+      <result property="url" column="curl"/>
+    </collection>
+
+  </resultMap>
+
+  <select id="findMenu" resultMap="menuMap">
+    select a1.id cid, a1.title ctitle, a1.aicon, a1.aurl curl, a2.id pid, a2.aurl purl, a2.title ptitle
+    from menu a1
+    INNER JOIN menu a2
+    on a1.parentId=a2.id
+
+  </select>
+</mapper>

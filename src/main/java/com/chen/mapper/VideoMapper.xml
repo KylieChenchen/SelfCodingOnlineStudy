@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.video.VideoMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.video.Video">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="preurl" jdbcType="VARCHAR" property="preurl" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="seconds" jdbcType="INTEGER" property="seconds" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="flag" jdbcType="SMALLINT" property="flag" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, preurl, size, seconds, name, cid, info, flag, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.video.Video">
+    insert into video (id, preurl, size, 
+      seconds, name, cid, 
+      info, flag, createtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{preurl,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, 
+      #{seconds,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}, 
+      #{info,jdbcType=VARCHAR}, #{flag,jdbcType=SMALLINT}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.video.Video">
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="preurl != null">
+        preurl,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="seconds != null">
+        seconds,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="preurl != null">
+        #{preurl,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="seconds != null">
+        #{seconds,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.video.Video">
+    update video
+    <set>
+      <if test="preurl != null">
+        preurl = #{preurl,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="seconds != null">
+        seconds = #{seconds,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.video.Video">
+    update video
+    set preurl = #{preurl,jdbcType=VARCHAR},
+      size = #{size,jdbcType=INTEGER},
+      seconds = #{seconds,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=INTEGER},
+      info = #{info,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=SMALLINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

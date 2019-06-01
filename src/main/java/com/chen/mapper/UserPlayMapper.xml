@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.user.UserPlayMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.user.UserPlay">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="vid" jdbcType="INTEGER" property="vid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="seconds" jdbcType="INTEGER" property="seconds" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, vid, uid, seconds, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userplay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userplay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.user.UserPlay">
+    insert into userplay (id, vid, uid, 
+      seconds, createtime)
+    values (#{id,jdbcType=INTEGER}, #{vid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{seconds,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.user.UserPlay">
+    insert into userplay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="vid != null">
+        vid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="seconds != null">
+        seconds,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null">
+        #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="seconds != null">
+        #{seconds,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.user.UserPlay">
+    update userplay
+    <set>
+      <if test="vid != null">
+        vid = #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="seconds != null">
+        seconds = #{seconds,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.user.UserPlay">
+    update userplay
+    set vid = #{vid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      seconds = #{seconds,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

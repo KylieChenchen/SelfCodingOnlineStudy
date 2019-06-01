@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.course.AuthorMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.course.Author">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="INTEGER" property="name" />
+    <result column="sex" jdbcType="SMALLINT" property="sex" />
+    <result column="headimg" jdbcType="VARCHAR" property="headimg" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, sex, headimg, info, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from author
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from author
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.course.Author">
+    insert into author (id, name, sex, 
+      headimg, info, createtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=INTEGER}, #{sex,jdbcType=SMALLINT}, 
+      #{headimg,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.course.Author">
+    insert into author
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="headimg != null">
+        headimg,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=SMALLINT},
+      </if>
+      <if test="headimg != null">
+        #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.course.Author">
+    update author
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=SMALLINT},
+      </if>
+      <if test="headimg != null">
+        headimg = #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.course.Author">
+    update author
+    set name = #{name,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=SMALLINT},
+      headimg = #{headimg,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultType="com.chen.entity.course.Author">
+    SELECT * from author
+  </select>
+
+  <select id="getLastId" resultType="string">
+
+    SELECT  id from author ORDER BY id DESC LIMIT 0,1
+
+  </select>
+</mapper>

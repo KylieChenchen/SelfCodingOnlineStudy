@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.user.UserDetailMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.user.UserDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="headimg" jdbcType="VARCHAR" property="headimg" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="cardno" jdbcType="VARCHAR" property="cardno" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, headimg, flag, birthday, sex, cardno, education, phone, email, password
+  </sql>
+  <sql id="Base_Column_List1">
+     name, headimg, flag, birthday, sex, cardno, education, phone, email, password
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.user.UserDetail">
+    insert into userdetail (id, name, headimg, 
+      flag, birthday, sex, cardno, 
+      education, phone, email, 
+      password)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{headimg,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{sex,jdbcType=INTEGER}, #{cardno,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.user.UserDetail">
+    insert into userdetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="headimg != null">
+        headimg,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="cardno != null">
+        cardno,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="headimg != null">
+        #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="cardno != null">
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.user.UserDetail">
+    update userdetail
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="headimg != null">
+        headimg = #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="cardno != null">
+        cardno = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.user.UserDetail">
+    update userdetail
+    set name = #{name,jdbcType=VARCHAR},
+      headimg = #{headimg,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=DATE},
+      sex = #{sex,jdbcType=INTEGER},
+      cardno = #{cardno,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--name, headimg, flag, birthday, sex, cardno, education, phone, email, password-->
+  <insert id="addBatch" parameterType="list">
+    insert into userdetail(<include refid="Base_Column_List" />)
+    values
+    <foreach collection="list" item="item" separator="," >
+      (#{item.id},#{item.name},#{item.headimg},1,#{item.flag},#{item.birthday},#{item.sex},#{item.cardno},#{item.education},#{item.phone},#{item.email},#{item.password})
+    </foreach>
+
+  </insert>
+
+</mapper>

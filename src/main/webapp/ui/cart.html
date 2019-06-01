@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="free-educational-responsive-web-template-webEdu">
+    <meta name="author" content="webThemez.com">
+    <title>SelfCoding_购物车</title>
+    <link rel="favicon" href="media/images/favicon.png">
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="media/css/font-awesome.min.css">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="media/css/bootstrap-theme.css" media="screen">
+    <link rel="stylesheet" href="media/css/style.css">
+    <link rel="stylesheet" type="text/css" href="media/css/style1.css">
+        <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+    <script src="media/js/jquery.min.js"></script>
+    <script src="media/js/jquery-1.12.2.min.js"></script>
+    <script src="media/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .yytype{
+            list-style-type: none;
+        }
+        .yytype li{
+            float: left;
+            margin-left: 10px;
+            margin-top: 20px;
+           margin-right: 40px;
+        }
+        .btn-group button{
+        	border: none;
+            background-color: #3D84E6;
+        }
+    </style>
+</head>
+
+<body>
+<script type="application/javascript" src="media/js/head.js"></script>
+<div class="gwcxqbj">
+    <div class="gwcxd center" id="div1">
+        <div class="top2 center">
+            <div class="sub_top fl">
+                <input type="checkbox" value="quanxuan" id="quanxuan" />全选
+            </div>
+            <div class="sub_top fl">商品名称</div>
+            <div class="sub_top fl">单价</div>
+            <div class="sub_top fl">数量</div>
+            <div class="sub_top fl">小计</div>
+            <div class="sub_top fr">操作</div>
+            <div class="clear"></div>
+        </div>
+
+
+            <!--<div class="content2 center">-->
+                <!--<div class="sub_content fl ">-->
+                    <!--<input type="checkbox" value="quanxuan" class="quanxuan" />-->
+                <!--</div>-->
+                <!--<div class="sub_content fl"><img src="./image/gwc_xiaomi6.jpg"></div>-->
+                <!--<div class="sub_content fl ft20">小米6全网通6GB内存+64GB 亮黑色</div>-->
+                <!--<div class="sub_content fl ">2499元</div>-->
+                <!--<div class="sub_content fl">-->
+                    <!--<input class="shuliang" type="number" value="1" step="1" min="1" >-->
+                <!--</div>-->
+                <!--<div class="sub_content fl">2499元</div>-->
+                <!--<div class="sub_content fl"><a href="">×</a></div>-->
+                <!--<div class="clear"></div>-->
+            <!--</div>-->
+
+
+    </div>
+    <div class="jiesuandan mt20 center">
+        <div class="tishi fl ml20">
+            <ul>
+                <li><a href="./liebiao.html">继续购物</a></li>
+                <li>|</li>
+                <li>共<span id="totalNum">0</span>件课程，已选择<span id="selNum">0</span>件
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="jiesuan fr">
+            <div class="jiesuanjiage fl">
+                合计（不含运费）：<span id="totalPrice">0.00</span>元
+            </div>
+            <div class="jsanniu fr">
+                <input class="jsan" type="button" name="jiesuan" value="去结算"
+                       onclick="buyClick()" />
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+<script type="application/javascript" src="media/js/footer.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $.ajax({
+            type : "get",
+            url : "../cart/list.do",
+            dataType : "json",
+            success : function(data) {
+                if (data.code == 1) {
+                    var infos = data.info;
+                    $(infos).each(function() {
+                        var html = '<div class="content2 center">';
+                        html += '<div class="sub_content fl ">';
+                        html += '<input type="checkbox" name="id" value="'+this.id+'" class="quanxuan" />';
+                        html += '</div>';
+                        html += '<div class="sub_content fl"><img src="'+this.imgpath+'" width="80px" height="80px"></div>';
+                        html += '<div class="sub_content fl ft20">'+ this.coursename+ '</div>';
+                        html += '<div class="sub_content fl "><span class="price">'+ this.coins+ '</span>元</div>';
+                        html += '<div class="sub_content fl">';
+                        html += '<input class="shuliang" type="number" value="1" step="1" min="1" name="num" onchange="cNumInfo(this,'+ this.coins+ ')">';
+                        html += '</div>';
+                        html += '<div class="sub_content fl">'+ this.coins+ '元</div>';
+                        html += '<div class="sub_content fl"><a href="javascript:delCart('+ this.courseid+ ')">×</a></div>';
+                        html += '<div class="clear"></div>';
+                        html += '</div>';
+                        $("#div1").append($(html));
+                    })
+
+                    // 设置全选事件
+                    $("#quanxuan").click(function() {
+                        if (this.checked) {
+                            $(".quanxuan").prop("checked", true);
+
+                        } else {
+                            $(".quanxuan").prop("checked", false);
+                        }
+
+                        calTotalMoney();
+                    })
+                    // 设置选中某个复选框的事件
+                    $(".quanxuan").click(function() {
+                        if (this.checked == false) {
+                            $("#quanxuan").prop("checked", false);
+                        }
+                        calTotalMoney();
+                    })
+                }
+            }
+        })
+    })
+</script>
+
+<script type="text/javascript">
+    // 计算修改数量后，某个商品的总价
+    function cNumInfo(numEle, price) {
+        // 找到要显示价格的元素
+        var ele = numEle.parentNode.nextSibling;
+        //alert(ele.innerHTML);
+        var v = parseInt(numEle.value) * parseFloat(price);
+        ele.innerHTML = v + "元";
+        // 修改数量后，计算总价
+        calTotalMoney();
+    }
+
+    function calTotalMoney() {
+        var arr = $(".quanxuan:checked");
+        var checkboxs = $(".quanxuan");
+        var prices = $(".price");
+        var nums = $(".shuliang");
+        var sum = 0;
+        for (var i = 0; i < checkboxs.length; i++) {
+            if (checkboxs[i].checked) {
+                sum += parseFloat(prices[i].innerHTML)* parseInt(nums[i].value);
+
+            }
+        }
+
+        $("#totalNum").html(checkboxs.length);
+        $("#selNum").html(arr.length);
+        $("#totalPrice").html(sum);
+    }
+</script>
+
+<script type="text/javascript">
+    function buyClick() {
+        var arr = $(".quanxuan:checked");
+        if (arr.length == 0) {
+            alert("没有选中购物车中内容，无法结算");
+            return;
+        }
+
+        var data = "";
+        var checkboxs = $(".quanxuan");
+        var nums = $(".shuliang");
+        for (var i = 0; i < checkboxs.length; i++) {
+            if (checkboxs[i].checked) {
+                data += "gid=" + checkboxs[i].value + "&";
+                data += "num=" + nums[i].value + "&";
+            }
+        }
+
+        $.ajax({
+            type : "get",
+            url : "../cart/addOrder",
+            data : data,
+            dataType : "json",
+            success : function(data) {
+                if (data.code == 1) {
+
+                } else {
+                    alert(data.info)
+                }
+
+            }
+
+        })
+
+    }
+</script>
+
+<script type="text/javascript">
+    function delCart(id) {
+        $.ajax({
+            type : "get",
+            url : "../cart/del.do?cid="+id,
+            // data:"cid="+id,
+            dataType : "json",
+            success : function(data) {
+                if (data.code == 1) {
+                    alert("删除成功！");
+                    window.location.reload();
+                }
+            }
+
+        })
+
+    }
+</script>
+
+<script type="text/javascript">
+    function Sum() {
+
+    }
+</script>
+
+
+</body>
+</html>

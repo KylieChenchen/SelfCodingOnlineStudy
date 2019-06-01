@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.pay.PayOrderMapper">
+  <resultMap id="BaseResultMap" type="com.chen.entity.pay.PayOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="uvid" jdbcType="INTEGER" property="uvid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="preurl" jdbcType="VARCHAR" property="preurl" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="flag" jdbcType="SMALLINT" property="flag" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, uvid, type, money, preurl, info, flag, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payorder
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payorder
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chen.entity.pay.PayOrder">
+    insert into payorder (id, uid, uvid, 
+      type, money, preurl, 
+      info, flag, createtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{uvid,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, #{preurl,jdbcType=VARCHAR}, 
+      #{info,jdbcType=VARCHAR}, #{flag,jdbcType=SMALLINT}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chen.entity.pay.PayOrder">
+    insert into payorder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="uvid != null">
+        uvid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="preurl != null">
+        preurl,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="uvid != null">
+        #{uvid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="preurl != null">
+        #{preurl,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chen.entity.pay.PayOrder">
+    update payorder
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="uvid != null">
+        uvid = #{uvid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="preurl != null">
+        preurl = #{preurl,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chen.entity.pay.PayOrder">
+    update payorder
+    set uid = #{uid,jdbcType=INTEGER},
+      uvid = #{uvid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      preurl = #{preurl,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=SMALLINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
